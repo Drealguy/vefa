@@ -95,7 +95,7 @@ export function TravellersPicker({
         <div
           role="dialog"
           aria-label="Choose travellers"
-          className="absolute top-full right-0 left-0 z-30 mt-2 min-w-[280px] rounded-3xl border border-black/10 bg-white p-2 shadow-2xl shadow-ink/10 sm:left-auto sm:w-80"
+          className="absolute top-full right-0 left-0 z-30 mt-2 rounded-3xl border border-black/10 bg-white p-2 shadow-2xl shadow-ink/10 sm:left-auto sm:w-80"
         >
           {rows.map((r) => {
             const value = counts[r.key];

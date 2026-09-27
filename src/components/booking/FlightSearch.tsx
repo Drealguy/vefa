@@ -77,13 +77,13 @@ export function FlightSearch() {
         aria-label="Search flights"
         className="rounded-3xl bg-white p-2 shadow-2xl shadow-ink/10 ring-1 ring-black/5"
       >
-        <div className="grid grid-cols-2 gap-1 lg:flex lg:items-center lg:gap-0 lg:divide-x lg:divide-black/5">
+        {/* Phones: one full-width field per row so values and dropdowns never get cramped or overflow. */}
+        <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:flex lg:items-center lg:gap-0 lg:divide-x lg:divide-black/5">
           <AirportField
             label="From"
             placeholder="Lagos (LOS)"
             value={from}
             onChange={setFrom}
-            className="col-span-2 sm:col-span-1"
             icon={<PlaneTakeoff size={20} />}
           />
           <AirportField
@@ -91,7 +91,6 @@ export function FlightSearch() {
             placeholder="Where to?"
             value={to}
             onChange={setTo}
-            className="col-span-2 sm:col-span-1"
             icon={<PlaneLanding size={20} />}
           />
           <label className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl px-4 py-3 transition-colors focus-within:bg-ink/[0.03] hover:bg-ink/[0.03]">
@@ -110,7 +109,7 @@ export function FlightSearch() {
             </span>
           </label>
           <TravellersPicker value={travellers} onChange={setTravellers} />
-          <div className="col-span-2 p-1 lg:pl-2">
+          <div className="p-1 sm:col-span-2 lg:pl-2">
             <Button
               type="submit"
               size="lg"

@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ContactDetails } from "@/components/sections/ContactDetails";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Faq } from "@/components/sections/Faq";
 import { PageHero } from "@/components/sections/PageHero";
 
-export const metadata: Metadata = {
-  title: "Contact Us — Vefa Tourism & Travels Ltd.",
-  description:
-    "Contact Vefa Tourism & Travels Ltd. Suite 219, Nawa Complex, Abuja. +234 803 214 2987, vefatravel22@gmail.com.",
-};
+export const metadata: Metadata = pageMetadata(
+  "Contact Us",
+  "Contact Vefa Tourism & Travels Ltd., Suite 219, Nawa Complex, Abuja. Call +234 803 214 2987 or email vefatravel22@gmail.com. 24/7 customer support.",
+  "/contact",
+);
 
 export default function ContactPage() {
   return (

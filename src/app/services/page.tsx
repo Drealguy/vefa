@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Faq } from "@/components/sections/Faq";
 import { PageHero } from "@/components/sections/PageHero";
 import { Services } from "@/components/sections/Services";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 
-export const metadata: Metadata = {
-  title: "Services — Vefa Tourism & Travels Ltd.",
-  description:
-    "International and domestic flights, hotel booking, travel insurance, visa services, tour packages and Umrah packages.",
-};
+export const metadata: Metadata = pageMetadata(
+  "Our Services",
+  "International and domestic flights, hotel booking, travel insurance, visa services (Dubai, Qatar, Egypt, Morocco, Tanzania from $150), tour packages and Umrah packages.",
+  "/services",
+);
 
 export default function ServicesPage() {
   return (

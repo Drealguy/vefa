@@ -22,7 +22,7 @@ Vefa Tourism & Travels Ltd. — IATA-certified travel agency in Nigeria (since 2
 
 ## About page (`src/app/about/page.tsx`), in order
 1. PageHero (compact): "About Us", "Our Story" label + one-line intro.
-2. Who We Are (`WhoWeAre.tsx`): photo panel + 3 paragraphs + facts row (2006 / IATA / 24/7), all from existing copy.
+2. Who We Are (`WhoWeAre.tsx`): photo panel + 3 paragraphs + facts row: "20+ Years of experience" (computed from 2006, so it updates yearly), 2006, IATA, 24/7. Numbers count up on scroll (`ui/CountUp.tsx`).
 3. Services (same component as home).
 4. Team (`Team.tsx`): Athenisec-style list + photo. Currently one member: Feranmi Ojediji (spelling to confirm; owner typed "ojedji"). Photo was sent mid-turn and never saved. Put it at `public/team/feranmi-ojediji.jpg` and set `photo`. Role to confirm.
 5. FAQ.
@@ -46,6 +46,13 @@ Vefa Tourism & Travels Ltd. — IATA-certified travel agency in Nigeria (since 2
 - `components/booking/FlightSearch.tsx`: From/To use `AirportField` (custom autocomplete over `lib/airports.ts`: type a city, code or country), date, `TravellersPicker`. Submitting POSTs to `/api/flights` and shows `FlightResults` under the bar: "N flights available", route/date/travellers, and one row per flight (logo, flight no., times, duration, stops, price, "Book this flight", which emails vefatravel22@gmail.com with the flight details).
 - `src/app/api/flights/route.ts`: with `DUFFEL_ACCESS_TOKEN` in `.env.local` it returns **live** offers from the Duffel API. Without it, it returns **sample fares** (`lib/flights.ts` `sampleOffers`, generated from the route and date), and the UI shows a "Sample fares. Our team confirms live prices." badge. Never remove that badge while results are samples.
 - To go live: create a Duffel account, put the token in `.env.local` (see `.env.example`), and in the hosting env vars.
+
+## SEO & share previews
+- Root `layout.tsx`: `metadataBase` from `siteUrl` (`lib/site.ts`: `NEXT_PUBLIC_SITE_URL`, else Vercel's production URL, else localhost), title template "%s | Vefa Tourism & Travels", description, keywords, canonical, Open Graph + Twitter card, robots, and TravelAgency JSON-LD (name, phone, email, address, services).
+- Per-page metadata via `pageMetadata()` in `lib/seo.ts` (fills OG/Twitter fully, because page-level objects replace the root ones).
+- Share image: `src/app/opengraph-image.jpg` + `twitter-image.jpg` (1200×630, ~60 KB, generated with sharp: logo, headline, services line, red bar). WhatsApp/Facebook cache previews, so a link shared before this change may keep its old (empty) preview for a while.
+- `sitemap.ts` + `robots.ts` (API routes disallowed).
+- **When the custom domain is live, set `NEXT_PUBLIC_SITE_URL=https://yourdomain` in the hosting env vars.**
 
 ## URLs
 - URLs never keep a `#`. Nav = Home, About Us, Services, Contact (real pages). "Book a Flight" (`/#book`) scrolls to the flight search and SmoothScroll strips the hash from the address bar.

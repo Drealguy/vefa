@@ -1,12 +1,18 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
+import { CountUp } from "@/components/ui/CountUp";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-// Facts only, taken from Vefa's existing copy.
-const facts = [
-  { value: "2006", label: "Trusted since" },
+// Facts only, taken from Vefa's existing copy. Years of experience stays correct as time passes (2026 → 20).
+const FOUNDED = 2006;
+const years = new Date().getFullYear() - FOUNDED;
+
+const facts: { value: ReactNode; label: string }[] = [
+  { value: <CountUp to={years} suffix="+" />, label: "Years of experience" },
+  { value: <CountUp from={1990} to={FOUNDED} />, label: "Trusted since" },
   { value: "IATA", label: "Certified agency" },
-  { value: "24/7", label: "Customer support" },
+  { value: <CountUp to={24} suffix="/7" duration={1.5} />, label: "Customer support" },
 ];
 
 export function WhoWeAre() {
@@ -42,7 +48,7 @@ export function WhoWeAre() {
             </p>
           </div>
 
-          <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-black/5 pt-8">
+          <dl className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 border-t border-black/5 pt-8 sm:grid-cols-4">
             {facts.map((fact) => (
               <div key={fact.label}>
                 <dt className="sr-only">{fact.label}</dt>

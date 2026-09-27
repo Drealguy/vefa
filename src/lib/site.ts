@@ -1,6 +1,14 @@
 // Single source for site-wide links and labels used by the navbar, footer and CTAs.
 import { services } from "@/lib/services";
 
+// Public site URL for SEO/share previews. Set NEXT_PUBLIC_SITE_URL once the custom domain is live;
+// on Vercel the production URL is picked up automatically.
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },

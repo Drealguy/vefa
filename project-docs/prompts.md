@@ -210,3 +210,15 @@ AI assistants: append each new prompt here (numbered, dated) before doing the wo
 >
 > also now when they actualluy search flighght it should respond oh 2 fligts available or something
 
+
+## 21 — 2026-09-27
+> responsivenss oooooo
+>
+> [attached: phone screenshot, the Travellers dropdown panel overflowing off the right edge of the screen, and the Departure date cramped/clipped in its half-width column]
+
+
+## 22 — 2026-09-27
+> why is not showiung a thumbnail prene when i want to snd the lin on watspp , plese make it seo ready add necesssacty tags and like descrioyion meta shii too
+>
+> also the abiut page, let the number animate aldo add 20 years to it
+

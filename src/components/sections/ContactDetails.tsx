@@ -15,7 +15,7 @@ function Detail({ icon, label, href, children }: { icon: ReactNode; label: strin
       <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand text-white">{icon}</span>
       <span className="min-w-0">
         <span className="block text-sm text-muted">{label}</span>
-        <span className="block font-heading text-lg font-semibold break-words text-ink group-hover:text-brand sm:text-xl">
+        <span className="block font-heading text-base font-semibold break-all text-ink sm:break-words group-hover:text-brand sm:text-xl">
           {children}
         </span>
       </span>
@@ -27,7 +27,8 @@ export function ContactDetails() {
   return (
     <Section>
       <Container className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-        <div>
+        {/* min-w-0 lets the column shrink below the long email address on small phones. */}
+        <div className="min-w-0">
           <SectionHeading title="Get In Touch" description="Contact us today." />
           <div className="mt-12 flex flex-col gap-4 sm:mt-16">
             <Detail icon={<Phone size={22} />} label="Call us" href={contact.phoneHref}>

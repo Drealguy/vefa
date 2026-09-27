@@ -80,7 +80,7 @@ export function AirportField({ label, icon, placeholder, value, onChange, classN
         <ul
           id={listId}
           role="listbox"
-          className="absolute top-full right-0 left-0 z-30 mt-2 min-w-[260px] overflow-hidden rounded-3xl border border-black/10 bg-white p-2 shadow-2xl shadow-ink/10"
+          className="absolute top-full right-0 left-0 z-30 mt-2 overflow-hidden sm:right-auto sm:w-72 rounded-3xl border border-black/10 bg-white p-2 shadow-2xl shadow-ink/10"
         >
           {suggestions.map((a, i) => (
             <li

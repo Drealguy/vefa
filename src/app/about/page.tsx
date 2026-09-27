@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Faq } from "@/components/sections/Faq";
 import { PageHero } from "@/components/sections/PageHero";
@@ -6,10 +7,11 @@ import { Services } from "@/components/sections/Services";
 import { Team } from "@/components/sections/Team";
 import { WhoWeAre } from "@/components/sections/WhoWeAre";
 
-export const metadata: Metadata = {
-  title: "About Us — Vefa Tourism & Travels Ltd.",
-  description: "IATA certified travel agency in Nigeria, trusted by travellers since 2006.",
-};
+export const metadata: Metadata = pageMetadata(
+  "About Us",
+  "Vefa Tourism & Travels Ltd. is an IATA certified travel agency in Abuja, Nigeria, trusted by travellers since 2006 for flights, hotels, visas, insurance, tours and Umrah.",
+  "/about",
+);
 
 export default function AboutPage() {
   return (
