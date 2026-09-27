@@ -38,6 +38,7 @@ Vega is a travel website redesign. Before doing anything, read:
 - **Heading → content gap:** `mt-12 sm:mt-16` between a SectionHeading and the section body.
 - **Headings:** use `SectionHeading` (h2: text-3xl / sm:text-4xl / lg:text-5xl, bold, text-ink). Body text: text-base / sm:text-lg, text-muted.
 - **Radius:** cards and images `rounded-3xl`; image panels `rounded-[2rem] bg-brand/5` with padding; buttons, pills and chips `rounded-full`.
+- **Dark mode:** never hard-code `bg-white`/`text-ink`/`border-black` for page surfaces or text. Use the theme tokens `bg-surface`, `text-fg`, `border-line`, `bg-tint`. `ink` and `white` are only for things that look the same in both themes (photo overlays, white buttons).
 - **Colour:** brand red, ink (black), white, plus the red-family tokens. Nothing else. Tinted surfaces (closed accordion items, info cards) use `bg-brand-light/60`; image panels and placeholders use `bg-brand/5`. No greys for surfaces.
 - **Button sizes:** `size="lg"` for section-level calls to action (hero, section intros, CTA banner); `md` inside cards, dropdowns and the footer. Always use `<Button>`, never a hand-styled button.
 - **Images:** store every image in `/public` (photos in `public/images/`). No hot-linked images.

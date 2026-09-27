@@ -3,21 +3,37 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 type LogoProps = {
-  tone?: "color" | "white";
+  // auto = colour logo in light mode, white logo in dark mode.
+  tone?: "color" | "white" | "auto";
   className?: string;
 };
 
-export function Logo({ tone = "color", className = "h-9 sm:h-10" }: LogoProps) {
+const src = { color: "/brand/vefa-logo.png", white: "/brand/vefa-logo-white.png" };
+
+function LogoImage({ tone, className }: { tone: "color" | "white"; className?: string }) {
   return (
-    <Link href="/" aria-label="Vefa Tourism & Travels Ltd. — home" className="inline-flex shrink-0">
-      <Image
-        src={tone === "white" ? "/brand/vefa-logo-white.png" : "/brand/vefa-logo.png"}
-        alt="Vefa Tourism & Travels Ltd."
-        width={412}
-        height={85}
-        preload
-        className={cn("w-auto", className)}
-      />
+    <Image
+      src={src[tone]}
+      alt="Vefa Tourism & Travels Ltd."
+      width={412}
+      height={85}
+      preload
+      className={cn("w-auto", className)}
+    />
+  );
+}
+
+export function Logo({ tone = "auto", className = "h-9 sm:h-10" }: LogoProps) {
+  return (
+    <Link href="/" aria-label="Vefa Tourism & Travels Ltd. home" className="inline-flex shrink-0">
+      {tone === "auto" ? (
+        <>
+          <LogoImage tone="color" className={cn(className, "dark:hidden")} />
+          <LogoImage tone="white" className={cn(className, "hidden dark:block")} />
+        </>
+      ) : (
+        <LogoImage tone={tone} className={className} />
+      )}
     </Link>
   );
 }

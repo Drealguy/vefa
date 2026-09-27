@@ -59,7 +59,7 @@ export function Faq() {
                 key={question}
                 className={cn(
                   "rounded-3xl border transition-colors duration-300",
-                  isOpen ? "border-black/10 bg-white" : "border-transparent bg-brand-light/60",
+                  isOpen ? "border-line bg-surface" : "border-transparent bg-tint",
                 )}
               >
                 <h3>
@@ -70,7 +70,7 @@ export function Faq() {
                     aria-controls={`faq-${i}`}
                     className="flex w-full items-center justify-between gap-4 rounded-3xl px-5 py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:px-7 sm:py-5"
                   >
-                    <span className="font-heading text-base font-semibold text-ink sm:text-lg">{question}</span>
+                    <span className="font-heading text-base font-semibold text-fg sm:text-lg">{question}</span>
                     <span
                       aria-hidden
                       className={cn(

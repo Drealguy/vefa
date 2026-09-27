@@ -26,7 +26,7 @@ export function Team() {
           <span aria-hidden className="size-1.5 bg-brand" />
           IATA certified since 2006
         </p>
-        <h2 className="text-3xl leading-tight font-bold tracking-tight text-balance text-ink sm:text-4xl lg:col-start-2 lg:row-start-1 lg:text-5xl">
+        <h2 className="text-3xl leading-tight font-bold tracking-tight text-balance text-fg sm:text-4xl lg:col-start-2 lg:row-start-1 lg:text-5xl">
           Meet the team behind Vefa Tourism &amp; Travels
         </h2>
 
@@ -53,7 +53,7 @@ export function Team() {
                   aria-pressed={i === active}
                   className={cn(
                     "grid w-full grid-cols-2 gap-4 border-b py-5 text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
-                    i === active ? "border-ink text-ink" : "border-black/10 text-muted/70 hover:text-ink",
+                    i === active ? "border-fg text-fg" : "border-line text-muted/70 hover:text-fg",
                   )}
                 >
                   <span className="font-heading text-lg font-semibold">{member.name}</span>

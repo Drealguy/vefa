@@ -48,7 +48,7 @@ export function WhoWeAre() {
             </p>
           </div>
 
-          <dl className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 border-t border-black/5 pt-8 sm:grid-cols-4">
+          <dl className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 border-t border-line pt-8 sm:grid-cols-4">
             {facts.map((fact) => (
               <div key={fact.label}>
                 <dt className="sr-only">{fact.label}</dt>

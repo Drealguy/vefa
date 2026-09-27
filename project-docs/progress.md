@@ -30,7 +30,7 @@ Vefa Tourism & Travels Ltd. — IATA-certified travel agency in Nigeria (since 2
 
 ## Services page (`src/app/services/page.tsx`), in order
 1. PageHero: "Our Services".
-2. Services grid: 7 `ServiceCard`s (`components/ui/ServiceCard.tsx`). Photo + icon + title; hover (desktop) or tap (mobile) reveals the description. Visa Services is a wide card showing "From $150" plus the visa price list on reveal.
+2. Services bento grid (desktop 4×3: Visa 2×2, International 2×1, Domestic, Hotel, Insurance, Tours, Umrah 2×1; tile size = `bento` in `lib/services.ts`; per-photo crop = `imagePosition`): 7 `ServiceCard`s (`components/ui/ServiceCard.tsx`). Photo + icon + title; hover (desktop) or tap (mobile) reveals the description. Visa Services is a wide card showing "From $150" plus the visa price list on reveal.
 3. Why choose us. 4. FAQ. 5. CTA.
 - Service data (titles, descriptions, images, prices) lives in `src/lib/services.ts`. Footer service links are generated from it.
 - Umrah description is a placeholder ("Contact us for our current Umrah packages"). Owner to supply details.
@@ -47,7 +47,20 @@ Vefa Tourism & Travels Ltd. — IATA-certified travel agency in Nigeria (since 2
 - `src/app/api/flights/route.ts`: with `DUFFEL_ACCESS_TOKEN` in `.env.local` it returns **live** offers from the Duffel API. Without it, it returns **sample fares** (`lib/flights.ts` `sampleOffers`, generated from the route and date), and the UI shows a "Sample fares. Our team confirms live prices." badge. Never remove that badge while results are samples.
 - **Duffel test mode is connected (2026-09-27):** a `duffel_test_…` token is in `.env.local` (git-ignored, never commit it). With a test token the API returns Duffel's simulated airline data (`test: true`) and the results show a "Test mode: demo fares, not live prices." badge. Test prices come back in EUR (the Duffel account's currency).
 - **Deploying:** add `DUFFEL_ACCESS_TOKEN` to the hosting env vars (e.g. Vercel → Settings → Environment Variables); `.env.local` is not deployed.
-- **Going live:** swap in a `duffel_live_…` token; the badge disappears automatically. Set the Duffel account currency to NGN if prices should show in naira.
+- **Prices are always shown in naira:** `/api/flights` converts non-NGN prices with the daily rate from open.er-api.com (`lib/fx.ts`, cached 12 h), rounds to ₦100, and returns `originalPrice/originalCurrency`; the UI shows "≈ €228 at today's rate" underneath. If the rate can't be fetched, prices stay in the original currency.
+- **Going live:** swap in a `duffel_live_…` token; the badge disappears automatically.
+
+## Dark mode
+- Toggle: `components/layout/ThemeToggle.tsx` (white round button after "Book a Flight" in the navbar). Adds/removes `.dark` on <html>, saved in localStorage `vefa-theme` (key in `lib/theme.ts`). An inline script in `layout.tsx` applies it before first paint. Default is light.
+- Theme tokens in `globals.css` (flip under `.dark`): `bg-background`, `bg-surface` (cards/panels/dropdowns/footer), `text-fg` (headings/strong text), `border-line`/`ring-line`/`divide-line`, `bg-tint` / `hover:bg-tint-strong` (pink surfaces), `text-muted`.
+- `ink` is ALWAYS dark (photo overlays, dark pills). Use `text-fg` for text on page surfaces. White buttons / round icon buttons stay `bg-white text-ink` in both themes.
+- `Logo tone="auto"`: colour logo in light, white logo in dark (navbar when scrolled, footer). Airline strip logos turn white in dark; result-row logos sit on a white chip.
+
+## WhatsApp = the way customers submit
+- `lib/site.ts`: `contact.whatsapp` ("2348032142987") + `whatsappHref(message)`.
+- Contact form "Send on WhatsApp" opens a chat with every answer prefilled; the thank-you screen has an "Open WhatsApp" fallback button.
+- Flight results: "Book on WhatsApp" with the flight, route, date, travellers and price prefilled.
+- Contact page: WhatsApp card first; footer lists WhatsApp too.
 
 ## SEO & share previews
 - Root `layout.tsx`: `metadataBase` from `siteUrl` (`lib/site.ts`: `NEXT_PUBLIC_SITE_URL`, else Vercel's production URL, else localhost), title template "%s | Vefa Tourism & Travels", description, keywords, canonical, Open Graph + Twitter card, robots, and TravelAgency JSON-LD (name, phone, email, address, services).

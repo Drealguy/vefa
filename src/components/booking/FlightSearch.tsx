@@ -76,10 +76,10 @@ export function FlightSearch() {
         onSubmit={onSubmit}
         noValidate
         aria-label="Search flights"
-        className="rounded-3xl bg-white p-2 shadow-2xl shadow-ink/10 ring-1 ring-black/5"
+        className="rounded-3xl bg-surface p-2 shadow-2xl shadow-ink/10 ring-1 ring-line"
       >
         {/* Phones: one full-width field per row so values and dropdowns never get cramped or overflow. */}
-        <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:flex lg:items-center lg:gap-0 lg:divide-x lg:divide-black/5">
+        <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:flex lg:items-center lg:gap-0 lg:divide-x lg:divide-line">
           <AirportField
             label="From"
             placeholder="Lagos (LOS)"
@@ -94,7 +94,7 @@ export function FlightSearch() {
             onChange={setTo}
             icon={<PlaneLanding size={20} />}
           />
-          <label className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl px-4 py-3 transition-colors focus-within:bg-ink/[0.03] hover:bg-ink/[0.03]">
+          <label className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl px-4 py-3 transition-colors focus-within:bg-fg/[0.05] hover:bg-fg/[0.05]">
             <span className="text-brand">
               <CalendarDays size={20} />
             </span>
@@ -105,7 +105,7 @@ export function FlightSearch() {
                 value={date}
                 min={today()}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full min-w-0 bg-transparent text-[15px] font-medium text-ink focus:outline-none"
+                className="w-full min-w-0 bg-transparent text-[15px] font-medium text-fg focus:outline-none"
               />
             </span>
           </label>

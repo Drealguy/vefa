@@ -3,6 +3,7 @@ import { Rethink_Sans, DM_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { THEME_KEY } from "@/lib/theme";
 import { services } from "@/lib/services";
 import { contact, siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -85,12 +86,20 @@ const jsonLd = {
   makesOffer: services.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title } })),
 };
 
+const themeScript = `try{if(localStorage.getItem(${JSON.stringify(THEME_KEY)})==="dark")document.documentElement.classList.add("dark")}catch(e){}`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
       className={`${rethinkSans.variable} ${dmSans.variable} h-full antialiased`}
+      // The theme script below may add `dark` before React hydrates.
+      suppressHydrationWarning
     >
+      <head>
+        {/* Apply the saved light/dark choice before first paint (no flash). Light is the default. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Navbar />

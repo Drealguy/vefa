@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { cn } from "@/lib/cn";
 import { bookHref, navLinks as links } from "@/lib/site";
 
@@ -38,12 +39,12 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        solid ? "bg-white shadow-md shadow-black/5" : "bg-transparent",
+        solid ? "bg-surface shadow-md shadow-black/5" : "bg-transparent",
       )}
     >
       <nav aria-label="Main" className="mx-auto max-w-7xl">
         <div className="flex h-16 items-center justify-between gap-4 px-4 sm:h-20 sm:px-6">
-          <Logo tone={solid ? "color" : "white"} className="h-8 sm:h-10" />
+          <Logo tone={solid ? "auto" : "white"} className="h-8 sm:h-10" />
 
           <ul className="hidden items-center gap-1 lg:flex">
             {links.map((link) => (
@@ -53,7 +54,7 @@ export function Navbar() {
                   aria-current={link.href === pathname ? "page" : undefined}
                   className={cn(
                     "rounded-full px-4 py-2 text-[15px] font-medium transition-colors",
-                    solid ? "text-ink hover:text-brand" : "text-white/90 hover:text-white",
+                    solid ? "text-fg hover:text-brand" : "text-white/90 hover:text-white",
                     link.href === pathname && (solid ? "text-brand" : "text-white"),
                   )}
                 >
@@ -72,6 +73,7 @@ export function Navbar() {
             >
               Book a Flight
             </Button>
+            <ThemeToggle />
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -94,14 +96,14 @@ export function Navbar() {
           }`}
         >
           <div className="overflow-hidden">
-            <ul className="flex flex-col gap-1 border-t border-black/5 px-4 py-4 sm:px-6">
+            <ul className="flex flex-col gap-1 border-t border-line px-4 py-4 sm:px-6">
               {links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
                     tabIndex={open ? 0 : -1}
-                    className="block rounded-xl px-4 py-3 text-base font-medium text-ink transition-colors hover:bg-brand/5 hover:text-brand"
+                    className="block rounded-xl px-4 py-3 text-base font-medium text-fg transition-colors hover:bg-brand/5 hover:text-brand"
                   >
                     {link.label}
                   </Link>

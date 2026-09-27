@@ -6,6 +6,10 @@ import { ServiceCard } from "@/components/ui/ServiceCard";
 import { services } from "@/lib/services";
 import { bookHref } from "@/lib/site";
 
+// Visual order for the bento grid (the big Visa tile leads). Other lists keep the order in lib/services.ts.
+const order = ["Visa Services", "International Flights", "Domestic Flights", "Hotel Booking", "Travel Insurance", "Tour Packages", "Umrah Packages"];
+const bentoOrder = [...services].sort((a, b) => order.indexOf(a.title) - order.indexOf(b.title));
+
 export function Services() {
   return (
     <Section id="services">
@@ -31,8 +35,15 @@ export function Services() {
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {services.map(({ icon: Icon, ...service }) => (
+        {/*
+          Bento grid (4 × 3 on desktop):
+          [ Visa 2×2 ][ International 2×1 ]
+          [ Visa     ][ Domestic ][ Hotel ]
+          [ Insurance][ Tours ][ Umrah 2×1 ]
+          Row heights are fixed per breakpoint; tile sizes come from `bento` in lib/services.ts.
+        */}
+        <div className="mt-12 grid auto-rows-[280px] grid-cols-1 gap-5 sm:mt-16 sm:auto-rows-[260px] sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {bentoOrder.map(({ icon: Icon, ...service }) => (
             <ServiceCard key={service.title} {...service} icon={<Icon size={20} />} />
           ))}
         </div>

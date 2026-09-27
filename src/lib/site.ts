@@ -21,11 +21,17 @@ export const bookHref = "/#book";
 export const contact = {
   phone: "+234 803 214 2987",
   phoneHref: "tel:+2348032142987",
+  whatsapp: "2348032142987", // international format, no "+" (wa.me links)
   email: "vefatravel22@gmail.com",
   emailHref: "mailto:vefatravel22@gmail.com",
   address: "Suite 219, Nawa Complex, Abuja",
   mapEmbed: "https://maps.google.com/maps?q=Suite%20219%2C%20Nawa%20Complex%2C%20Abuja&z=16&output=embed",
   mapLink: "https://www.google.com/maps/search/?api=1&query=Suite%20219%2C%20Nawa%20Complex%2C%20Abuja",
 };
+
+/** WhatsApp chat link to Vefa, optionally with a pre-filled message. All enquiries/bookings go here. */
+export function whatsappHref(message?: string) {
+  return `https://wa.me/${contact.whatsapp}${message ? `?text=${encodeURIComponent(message)}` : ""}`;
+}
 
 export const serviceLinks = services.map((s) => ({ label: s.title, href: "/services" }));

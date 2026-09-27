@@ -30,7 +30,8 @@ function AirlineLogo({ name, logo, width, height }: Airline) {
         height={height}
         unoptimized
         loading="eager"
-        className="h-auto max-h-9 w-auto max-w-full object-contain sm:max-h-11"
+        // Dark mode: show logos in white so dark-coloured brand marks stay visible.
+        className="h-auto max-h-9 w-auto max-w-full object-contain sm:max-h-11 dark:opacity-85 dark:brightness-0 dark:invert"
       />
     </div>
   );

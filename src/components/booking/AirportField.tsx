@@ -51,7 +51,7 @@ export function AirportField({ label, icon, placeholder, value, onChange, classN
 
   return (
     <div ref={ref} className={cn("relative min-w-0 flex-1", className)}>
-      <label className="flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors focus-within:bg-ink/[0.03] hover:bg-ink/[0.03]">
+      <label className="flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors focus-within:bg-fg/[0.05] hover:bg-fg/[0.05]">
         <span className="text-brand">{icon}</span>
         <span className="flex min-w-0 flex-1 flex-col">
           <span className="text-xs font-medium text-muted">{label}</span>
@@ -71,7 +71,7 @@ export function AirportField({ label, icon, placeholder, value, onChange, classN
               setOpen(true);
             }}
             onKeyDown={onKeyDown}
-            className="w-full min-w-0 bg-transparent text-[15px] font-medium text-ink placeholder:text-ink/40 focus:outline-none"
+            className="w-full min-w-0 bg-transparent text-[15px] font-medium text-fg placeholder:text-fg/40 focus:outline-none"
           />
         </span>
       </label>
@@ -80,7 +80,7 @@ export function AirportField({ label, icon, placeholder, value, onChange, classN
         <ul
           id={listId}
           role="listbox"
-          className="absolute top-full right-0 left-0 z-30 mt-2 overflow-hidden sm:right-auto sm:w-72 rounded-3xl border border-black/10 bg-white p-2 shadow-2xl shadow-ink/10"
+          className="absolute top-full right-0 left-0 z-30 mt-2 overflow-hidden sm:right-auto sm:w-72 rounded-3xl border border-line bg-surface p-2 shadow-2xl shadow-ink/10"
         >
           {suggestions.map((a, i) => (
             <li
@@ -92,11 +92,11 @@ export function AirportField({ label, icon, placeholder, value, onChange, classN
               onMouseEnter={() => setActive(i)}
               className={cn(
                 "flex cursor-pointer items-center justify-between gap-4 rounded-2xl px-4 py-3",
-                i === active && "bg-brand-light/60",
+                i === active && "bg-tint",
               )}
             >
               <span className="min-w-0">
-                <span className="block font-heading font-semibold text-ink">{a.city}</span>
+                <span className="block font-heading font-semibold text-fg">{a.city}</span>
                 <span className="block truncate text-sm text-muted">{a.country}</span>
               </span>
               <span className="font-heading text-sm font-semibold text-brand">{a.code}</span>

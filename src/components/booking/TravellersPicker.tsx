@@ -80,14 +80,14 @@ export function TravellersPicker({
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left transition-colors hover:bg-ink/[0.03] focus-visible:bg-ink/[0.03] focus-visible:outline-none"
+        className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left transition-colors hover:bg-fg/[0.05] focus-visible:bg-fg/[0.05] focus-visible:outline-none"
       >
         <span className="text-brand">
           <Users size={20} />
         </span>
         <span className="flex min-w-0 flex-1 flex-col">
           <span className="text-xs font-medium text-muted">Travellers</span>
-          <span className="truncate text-[15px] font-medium text-ink">{summary(counts)}</span>
+          <span className="truncate text-[15px] font-medium text-fg">{summary(counts)}</span>
         </span>
         <ChevronDown size={18} className={cn("shrink-0 text-muted transition-transform", open && "rotate-180")} />
       </button>
@@ -96,7 +96,7 @@ export function TravellersPicker({
         <div
           role="dialog"
           aria-label="Choose travellers"
-          className="absolute top-full right-0 left-0 z-30 mt-2 rounded-3xl border border-black/10 bg-white p-2 shadow-2xl shadow-ink/10 sm:left-auto sm:w-80"
+          className="absolute top-full right-0 left-0 z-30 mt-2 rounded-3xl border border-line bg-surface p-2 shadow-2xl shadow-ink/10 sm:left-auto sm:w-80"
         >
           {rows.map((r) => {
             const value = counts[r.key];
@@ -104,14 +104,14 @@ export function TravellersPicker({
             return (
               <div key={r.key} className="flex items-center justify-between gap-4 rounded-2xl px-4 py-3">
                 <div>
-                  <p className="font-heading font-semibold text-ink">{r.label}</p>
+                  <p className="font-heading font-semibold text-fg">{r.label}</p>
                   <p className="text-sm text-muted">{r.hint}</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <StepButton label={`Remove one ${r.label.toLowerCase()}`} disabled={value <= r.min} onClick={() => change(r.key, -1)}>
                     <Minus size={16} />
                   </StepButton>
-                  <span className="w-5 text-center font-heading font-semibold text-ink" aria-live="polite">
+                  <span className="w-5 text-center font-heading font-semibold text-fg" aria-live="polite">
                     {value}
                   </span>
                   <StepButton label={`Add one ${r.label.toLowerCase()}`} disabled={maxed} onClick={() => change(r.key, 1)}>
@@ -121,7 +121,7 @@ export function TravellersPicker({
               </div>
             );
           })}
-          <div className="mt-1 border-t border-black/5 p-2">
+          <div className="mt-1 border-t border-line p-2">
             <Button type="button" onClick={() => setOpen(false)} className="w-full hover:translate-y-0">
               Done
             </Button>

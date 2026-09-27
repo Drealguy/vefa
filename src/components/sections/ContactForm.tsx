@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
-import { ArrowLeft, ArrowRight, CornerDownLeft, Send } from "lucide-react";
+import { ArrowLeft, ArrowRight, CornerDownLeft, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { cn } from "@/lib/cn";
 import { services } from "@/lib/services";
-import { contact } from "@/lib/site";
+import { contact, whatsappHref } from "@/lib/site";
 
 type Step = {
   id: string;
@@ -69,14 +69,14 @@ export function ContactForm() {
     setIndex((i) => Math.max(0, i - 1));
   }
 
-  // No backend yet: open the visitor's email app with their answers filled in.
-  // TODO: replace with a form service / API route so messages arrive without an email app.
+  // Enquiries are submitted on WhatsApp: open a chat with Vefa with every answer filled in.
+  function whatsappLink() {
+    const lines = steps.map((s) => `*${s.question}*\n${answers[s.id] || "-"}`).join("\n\n");
+    return whatsappHref(`Hello Vefa Travels, here's my enquiry:\n\n${lines}`);
+  }
+
   function send() {
-    const body = steps.map((s) => `${s.question}\n${answers[s.id] || "-"}`).join("\n\n");
-    const subject = `Enquiry from ${answers.name}${answers.service ? ` (${answers.service})` : ""}`;
-    const mail = document.createElement("a");
-    mail.href = `${contact.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    mail.click();
+    window.open(whatsappLink(), "_blank", "noopener,noreferrer");
     setSent(true);
   }
 
@@ -93,13 +93,13 @@ export function ContactForm() {
   }
 
   const inputClass =
-    "w-full border-b-2 border-ink/15 bg-transparent pb-3 font-heading text-xl text-ink placeholder:text-ink/30 focus:border-brand focus:outline-none sm:text-3xl";
+    "w-full border-b-2 border-fg/15 bg-transparent pb-3 font-heading text-xl text-fg placeholder:text-fg/30 focus:border-brand focus:outline-none sm:text-3xl";
 
   return (
     <Section id="enquiry">
       <Container className="max-w-5xl">
         {/* Progress */}
-        <div className="h-1 overflow-hidden rounded-full bg-ink/5">
+        <div className="h-1 overflow-hidden rounded-full bg-fg/10">
           <div
             className="h-full rounded-full bg-brand transition-[width] duration-500"
             style={{ width: `${((sent ? steps.length : index) / steps.length) * 100}%` }}
@@ -112,33 +112,40 @@ export function ContactForm() {
               <span aria-hidden className="size-1.5 bg-brand" />
               All done
             </p>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-ink sm:text-5xl">
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-fg sm:text-5xl">
               Thank you, {answers.name?.split(" ")[0]}!
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-              Your email app should have opened with your answers. Just press send. If it didn&apos;t open, email us at{" "}
-              <a href={contact.emailHref} className="font-semibold text-ink hover:text-brand">
-                {contact.email}
-              </a>{" "}
-              or call{" "}
-              <a href={contact.phoneHref} className="font-semibold text-ink hover:text-brand">
+              WhatsApp should have opened with your answers. Just press send to submit. If it didn&apos;t open, use
+              the button below or call{" "}
+              <a href={contact.phoneHref} className="font-semibold text-fg hover:text-brand">
                 {contact.phone}
               </a>
               .
             </p>
+            <Button
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              size="lg"
+              className="mt-8"
+              icon={<MessageCircle size={18} />}
+            >
+              Open WhatsApp
+            </Button>
           </div>
         ) : (
           <form onSubmit={next} noValidate className="mt-12 sm:mt-16" aria-live="polite">
             <p className="inline-flex items-center gap-2 text-sm text-muted sm:text-base">
               <span aria-hidden className="size-1.5 bg-brand" />
               {step.group}
-              <span className="text-ink/30">
+              <span className="text-fg/30">
                 {index + 1} / {steps.length}
               </span>
             </p>
 
             <label htmlFor={`q-${step.id}`} className="mt-4 block">
-              <span className="font-heading text-3xl leading-tight font-bold tracking-tight text-ink sm:text-5xl">
+              <span className="font-heading text-3xl leading-tight font-bold tracking-tight text-fg sm:text-5xl">
                 {step.question}
               </span>
               {step.required && <span className="ml-2 text-3xl font-bold text-brand sm:text-5xl">*</span>}
@@ -206,9 +213,9 @@ export function ContactForm() {
                   type="submit"
                   size="lg"
                   className={cn(step.required && !value.trim() && "opacity-50")}
-                  icon={isLast ? <Send size={18} /> : <ArrowRight size={18} />}
+                  icon={isLast ? <MessageCircle size={18} /> : <ArrowRight size={18} />}
                 >
-                  {isLast ? "Send" : "Continue"}
+                  {isLast ? "Send on WhatsApp" : "Continue"}
                 </Button>
               </div>
               <p className="hidden items-center gap-1.5 text-sm text-muted sm:inline-flex">

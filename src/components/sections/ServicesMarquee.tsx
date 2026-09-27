@@ -8,7 +8,7 @@ type Tone = "brand" | "ink" | "deep" | "coral" | "light";
 
 const tones: Record<Tone, { pill: string; icon: string }> = {
   brand: { pill: "bg-brand text-white", icon: "bg-white/20" },
-  ink: { pill: "bg-ink text-white", icon: "bg-white/15" },
+  ink: { pill: "bg-ink text-white dark:ring-1 dark:ring-white/15", icon: "bg-white/15" },
   deep: { pill: "bg-brand-deep text-white", icon: "bg-white/15" },
   coral: { pill: "bg-brand-coral text-white", icon: "bg-white/20" },
   light: { pill: "bg-brand-light text-brand-deep", icon: "bg-brand/10" },
@@ -53,7 +53,7 @@ function Pill({ label, icon: Icon, tone }: Item) {
 
 export function ServicesMarquee() {
   return (
-    <Section className="overflow-hidden bg-brand-light/40">
+    <Section className="overflow-hidden bg-tint/70">
       <Container>
         <SectionHeading
           align="center"

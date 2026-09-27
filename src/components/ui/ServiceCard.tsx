@@ -13,25 +13,38 @@ import { cn } from "@/lib/cn";
 // The icon arrives already rendered: component functions can't cross the server → client boundary.
 type ServiceCardProps = Omit<Service, "icon"> & { icon: ReactNode };
 
-export function ServiceCard({ title, description, image, icon, prices, pricesTitle, featured }: ServiceCardProps) {
+// Bento spans. Heights come from the grid's auto-rows (see Services.tsx).
+const spans: Record<Service["bento"], string> = {
+  feature: "row-span-2 sm:col-span-2",
+  wide: "sm:col-span-2",
+  tile: "",
+};
+
+export function ServiceCard({
+  title,
+  description,
+  image,
+  imagePosition,
+  icon,
+  prices,
+  pricesTitle,
+  bento,
+}: ServiceCardProps) {
   const [open, setOpen] = useState(false);
   const lowest = prices?.map((p) => p.price).sort()[0];
+  const large = bento !== "tile";
 
   return (
     <article
       data-open={open}
-      className={cn(
-        // Phones: shorter cards (5:4) so seven services don't make an endless scroll; the Visa card
-        // stays 4:5 there because its price list needs the height.
-        "group relative isolate aspect-[5/4] overflow-hidden rounded-3xl bg-ink sm:aspect-[4/5]",
-        featured && "aspect-[4/5] sm:col-span-2 sm:aspect-[8/5] lg:aspect-auto",
-      )}
+      className={cn("group relative isolate h-full overflow-hidden rounded-3xl bg-ink", spans[bento])}
     >
       <Image
         src={image}
         alt=""
         fill
-        sizes={featured ? "(min-width: 640px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"}
+        sizes={large ? "(min-width: 640px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"}
+        style={imagePosition ? { objectPosition: imagePosition } : undefined}
         className="-z-20 object-cover transition-transform duration-500 group-hover:scale-105 group-data-[open=true]:scale-105"
       />
       <div
@@ -58,7 +71,9 @@ export function ServiceCard({ title, description, image, icon, prices, pricesTit
       <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
         <div className="flex items-end justify-between gap-3">
           <div>
-            <h3 className="text-lg font-bold sm:text-xl">{title}</h3>
+            <h3 className={cn("font-bold", bento === "feature" ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl")}>
+              {title}
+            </h3>
             {lowest && <p className="mt-1 text-sm text-white/80">From {lowest}</p>}
           </div>
           <span

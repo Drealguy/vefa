@@ -232,3 +232,15 @@ AI assistants: append each new prompt here (numbered, dated) before doing the wo
 ## 24 — 2026-09-27
 > so now lrts add the duffel test mode [Duffel test access token — redacted here; stored only in .env.local, which is git-ignored]
 
+
+## 25 — 2026-09-27
+> the service section should be a bento grid style dyg
+
+
+## 26 — 2026-09-27
+> add a light and drak mode swiitch button after the nav bar button
+
+
+## 27 — 2026-09-27
+> make sure the booking is naira o and then all coontact should redirect them to whatsapp to submiy their form 08032142987
+

@@ -75,7 +75,7 @@ export function WhyChooseUs() {
                     aria-expanded={isActive}
                     className={cn(
                       "w-full rounded-2xl px-5 py-5 text-left transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:px-7",
-                      isActive ? "bg-brand text-white" : "bg-brand-light/60 text-ink hover:bg-brand-light",
+                      isActive ? "bg-brand text-white" : "bg-tint text-fg hover:bg-tint-strong",
                     )}
                   >
                     <span className="flex items-center gap-4">

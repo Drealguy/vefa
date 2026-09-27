@@ -1,3 +1,4 @@
+import { rateToNaira, toNaira } from "@/lib/fx";
 import { airlineLogos, isoDurationToText, sampleOffers, type FlightOffer, type FlightSearchParams } from "@/lib/flights";
 
 /**
@@ -86,6 +87,20 @@ export async function POST(request: Request) {
         currency: o.total_currency,
       } satisfies FlightOffer;
     });
+
+    // Show every price in naira. Duffel returns the account currency (e.g. EUR); convert at the daily rate
+    // and keep the original so the UI can show it. If the rate can't be fetched, prices stay as returned.
+    const currencies = [...new Set(offers.map((o) => o.currency).filter((c) => c !== "NGN"))];
+    const rates = Object.fromEntries(await Promise.all(currencies.map(async (c) => [c, await rateToNaira(c)] as const)));
+    for (const o of offers) {
+      const rate = rates[o.currency];
+      if (rate) {
+        o.originalPrice = o.price;
+        o.originalCurrency = o.currency;
+        o.price = toNaira(o.price, rate);
+        o.currency = "NGN";
+      }
+    }
 
     offers.sort((a, b) => a.price - b.price);
     // Test tokens return simulated airline data; the UI labels it so nobody mistakes it for live fares.

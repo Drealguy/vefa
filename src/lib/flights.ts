@@ -22,6 +22,9 @@ export type FlightOffer = {
   via: string[];
   price: number; // total for all passengers
   currency: string;
+  // Set when the price was converted to naira from the airline/Duffel currency.
+  originalPrice?: number;
+  originalCurrency?: string;
 };
 
 // sample: generated fares (no API key). test: Duffel test mode (simulated, not bookable).
