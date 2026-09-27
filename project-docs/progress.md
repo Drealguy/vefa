@@ -45,7 +45,9 @@ Vefa Tourism & Travels Ltd. — IATA-certified travel agency in Nigeria (since 2
 ## Flight search (home hero)
 - `components/booking/FlightSearch.tsx`: From/To use `AirportField` (custom autocomplete over `lib/airports.ts`: type a city, code or country), date, `TravellersPicker`. Submitting POSTs to `/api/flights` and shows `FlightResults` under the bar: "N flights available", route/date/travellers, and one row per flight (logo, flight no., times, duration, stops, price, "Book this flight", which emails vefatravel22@gmail.com with the flight details).
 - `src/app/api/flights/route.ts`: with `DUFFEL_ACCESS_TOKEN` in `.env.local` it returns **live** offers from the Duffel API. Without it, it returns **sample fares** (`lib/flights.ts` `sampleOffers`, generated from the route and date), and the UI shows a "Sample fares. Our team confirms live prices." badge. Never remove that badge while results are samples.
-- To go live: create a Duffel account, put the token in `.env.local` (see `.env.example`), and in the hosting env vars.
+- **Duffel test mode is connected (2026-09-27):** a `duffel_test_…` token is in `.env.local` (git-ignored, never commit it). With a test token the API returns Duffel's simulated airline data (`test: true`) and the results show a "Test mode: demo fares, not live prices." badge. Test prices come back in EUR (the Duffel account's currency).
+- **Deploying:** add `DUFFEL_ACCESS_TOKEN` to the hosting env vars (e.g. Vercel → Settings → Environment Variables); `.env.local` is not deployed.
+- **Going live:** swap in a `duffel_live_…` token; the badge disappears automatically. Set the Duffel account currency to NGN if prices should show in naira.
 
 ## SEO & share previews
 - Root `layout.tsx`: `metadataBase` from `siteUrl` (`lib/site.ts`: `NEXT_PUBLIC_SITE_URL`, else Vercel's production URL, else localhost), title template "%s | Vefa Tourism & Travels", description, keywords, canonical, Open Graph + Twitter card, robots, and TravelAgency JSON-LD (name, phone, email, address, services).

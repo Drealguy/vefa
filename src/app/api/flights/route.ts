@@ -88,7 +88,8 @@ export async function POST(request: Request) {
     });
 
     offers.sort((a, b) => a.price - b.price);
-    return Response.json({ sample: false, offers });
+    // Test tokens return simulated airline data; the UI labels it so nobody mistakes it for live fares.
+    return Response.json({ sample: false, test: token.startsWith("duffel_test_"), offers });
   } catch (err) {
     console.error("Flight search failed", err);
     return Response.json({ error: "We couldn't reach the airlines right now. Please try again." }, { status: 502 });

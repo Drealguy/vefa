@@ -18,6 +18,7 @@ type Search = {
   status: "loading" | "done" | "error";
   offers: FlightOffer[];
   sample: boolean;
+  test?: boolean;
   error?: string;
 };
 
@@ -63,7 +64,7 @@ export function FlightSearch() {
       });
       const data: FlightSearchResponse = await res.json();
       if ("error" in data) setSearch({ ...base, status: "error", error: data.error });
-      else setSearch({ ...base, status: "done", offers: data.offers, sample: data.sample });
+      else setSearch({ ...base, status: "done", offers: data.offers, sample: data.sample, test: data.test ?? false });
     } catch {
       setSearch({ ...base, status: "error", error: "Something went wrong. Please try again." });
     }

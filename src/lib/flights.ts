@@ -24,7 +24,8 @@ export type FlightOffer = {
   currency: string;
 };
 
-export type FlightSearchResponse = { sample: boolean; offers: FlightOffer[] } | { error: string };
+// sample: generated fares (no API key). test: Duffel test mode (simulated, not bookable).
+export type FlightSearchResponse = { sample: boolean; test?: boolean; offers: FlightOffer[] } | { error: string };
 
 // Local logos for our airline partners (public/airlines).
 export const airlineLogos: Record<string, string> = {

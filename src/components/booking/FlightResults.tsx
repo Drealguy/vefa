@@ -9,6 +9,7 @@ type FlightResultsProps = {
   status: "loading" | "done" | "error";
   offers: FlightOffer[];
   sample: boolean;
+  test?: boolean;
   error?: string;
   from: Airport;
   to: Airport;
@@ -40,7 +41,7 @@ function bookingMail(o: FlightOffer, p: Pick<FlightResultsProps, "from" | "to" |
 }
 
 export function FlightResults(props: FlightResultsProps) {
-  const { status, offers, sample, error, from, to, dateLabel, travellersLabel } = props;
+  const { status, offers, sample, test, error, from, to, dateLabel, travellersLabel } = props;
 
   return (
     <div aria-live="polite" className="mt-4 rounded-3xl border border-black/10 bg-white p-4 sm:p-6">
@@ -64,10 +65,10 @@ export function FlightResults(props: FlightResultsProps) {
                 {from.city} ({from.code}) → {to.city} ({to.code}) · {dateLabel} · {travellersLabel}
               </p>
             </div>
-            {sample && (
+            {(sample || test) && (
               <p className="inline-flex items-center gap-2 self-start rounded-full bg-brand-light px-3 py-1.5 text-xs font-semibold text-brand-deep sm:self-auto">
                 <Info size={14} />
-                Sample fares. Our team confirms live prices.
+                {test ? "Test mode: demo fares, not live prices." : "Sample fares. Our team confirms live prices."}
               </p>
             )}
           </div>
@@ -83,7 +84,7 @@ export function FlightResults(props: FlightResultsProps) {
           ) : (
             <ul className="divide-y divide-black/5">
               {offers.map((o) => (
-                <li key={o.id} className="grid gap-4 py-5 sm:grid-cols-[180px_1fr_auto] sm:items-center sm:gap-6">
+                <li key={o.id} className="grid gap-4 py-5 sm:grid-cols-[230px_1fr_auto] sm:items-center sm:gap-6">
                   <div className="flex items-center gap-3">
                     <span className="flex h-12 w-20 shrink-0 items-center justify-center">
                       {o.logo ? (
@@ -100,7 +101,7 @@ export function FlightResults(props: FlightResultsProps) {
                       )}
                     </span>
                     <span className="min-w-0">
-                      <span className="block truncate font-heading font-semibold text-ink">{o.airline}</span>
+                      <span className="line-clamp-2 block font-heading leading-snug font-semibold text-ink">{o.airline}</span>
                       <span className="block text-sm text-muted">{o.flightNumber}</span>
                     </span>
                   </div>

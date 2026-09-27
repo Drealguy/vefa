@@ -228,3 +228,7 @@ AI assistants: append each new prompt here (numbered, dated) before doing the wo
 >
 > now check any irregularities any responsivensss and design sysetm and fix it all and then push
 
+
+## 24 — 2026-09-27
+> so now lrts add the duffel test mode [Duffel test access token — redacted here; stored only in .env.local, which is git-ignored]
+
