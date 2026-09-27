@@ -204,3 +204,9 @@ AI assistants: append each new prompt here (numbered, dated) before doing the wo
 > add animation to all our textsss  like scroll reveal you know
 >
 > [attached: screenshot of the hero flight search with the native browser "Travellers" dropdown open, and the airline logos showing as broken images]
+
+## 20 — 2026-09-27
+> add a whiet backiud to the logo so that it shows on every theme
+>
+> also now when they actualluy search flighght it should respond oh 2 fligts available or something
+

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Minus, Plus, Users } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-type Counts = { adults: number; children: number; infants: number };
+export type Counts = { adults: number; children: number; infants: number };
 
 const rows: { key: keyof Counts; label: string; hint: string; min: number }[] = [
   { key: "adults", label: "Adults", hint: "12+ years", min: 1 },
@@ -14,7 +14,7 @@ const rows: { key: keyof Counts; label: string; hint: string; min: number }[] = 
 
 const MAX_TOTAL = 9;
 
-function summary({ adults, children, infants }: Counts) {
+export function summary({ adults, children, infants }: Counts) {
   const parts = [`${adults} Adult${adults > 1 ? "s" : ""}`];
   if (children) parts.push(`${children} Child${children > 1 ? "ren" : ""}`);
   if (infants) parts.push(`${infants} Infant${infants > 1 ? "s" : ""}`);
@@ -36,9 +36,16 @@ function StepButton({ label, disabled, onClick, children }: { label: string; dis
 }
 
 /** Custom travellers dropdown for the flight search (replaces the native <select>). */
-export function TravellersPicker({ className }: { className?: string }) {
+export function TravellersPicker({
+  value: counts,
+  onChange,
+  className,
+}: {
+  value: Counts;
+  onChange: (next: Counts) => void;
+  className?: string;
+}) {
   const [open, setOpen] = useState(false);
-  const [counts, setCounts] = useState<Counts>({ adults: 1, children: 0, infants: 0 });
   const ref = useRef<HTMLDivElement>(null);
   const total = counts.adults + counts.children + counts.infants;
 
@@ -54,13 +61,12 @@ export function TravellersPicker({ className }: { className?: string }) {
     };
   }, [open]);
 
-  const change = (key: keyof Counts, delta: number) =>
-    setCounts((c) => {
-      const next = { ...c, [key]: c[key] + delta };
-      // Airlines allow at most one infant per adult.
-      if (next.infants > next.adults) next.infants = next.adults;
-      return next;
-    });
+  const change = (key: keyof Counts, delta: number) => {
+    const next = { ...counts, [key]: counts[key] + delta };
+    // Airlines allow at most one infant per adult.
+    if (next.infants > next.adults) next.infants = next.adults;
+    onChange(next);
+  };
 
   return (
     <div ref={ref} className={cn("relative min-w-0 flex-1", className)}>

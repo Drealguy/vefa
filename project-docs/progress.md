@@ -42,6 +42,11 @@ Vefa Tourism & Travels Ltd. — IATA-certified travel agency in Nigeria (since 2
 4. FAQ. 5. CTA.
 - Contact info lives in `lib/site.ts` (`contact`): +234 803 214 2987, vefatravel22@gmail.com, Suite 219, Nawa Complex, Abuja. The footer shows all three.
 
+## Flight search (home hero)
+- `components/booking/FlightSearch.tsx`: From/To use `AirportField` (custom autocomplete over `lib/airports.ts`: type a city, code or country), date, `TravellersPicker`. Submitting POSTs to `/api/flights` and shows `FlightResults` under the bar: "N flights available", route/date/travellers, and one row per flight (logo, flight no., times, duration, stops, price, "Book this flight", which emails vefatravel22@gmail.com with the flight details).
+- `src/app/api/flights/route.ts`: with `DUFFEL_ACCESS_TOKEN` in `.env.local` it returns **live** offers from the Duffel API. Without it, it returns **sample fares** (`lib/flights.ts` `sampleOffers`, generated from the route and date), and the UI shows a "Sample fares. Our team confirms live prices." badge. Never remove that badge while results are samples.
+- To go live: create a Duffel account, put the token in `.env.local` (see `.env.example`), and in the hosting env vars.
+
 ## URLs
 - URLs never keep a `#`. Nav = Home, About Us, Services, Contact (real pages). "Book a Flight" (`/#book`) scrolls to the flight search and SmoothScroll strips the hash from the address bar.
 
@@ -62,7 +67,7 @@ Vefa Tourism & Travels Ltd. — IATA-certified travel agency in Nigeria (since 2
 ## Assets
 - Logos: `public/brand/`. Promo flyers: `public/promos/`.
 - Airline logos: stored locally in `public/airlines/*.svg`.
-- Favicon: `src/app/icon.png` + `apple-icon.png` (cropped from the logo mark).
+- Favicon: `src/app/icon.png` + `apple-icon.png`: logo mark on a white rounded square so it shows on light and dark browser themes.
 - Still hot-linked: Unsplash photos, Pinterest service images. Move into `/public` before launch (downloading needs the owner's OK).
 - Unsplash URLs must keep `?w=2400&q=80&auto=format`.
 
