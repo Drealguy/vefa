@@ -75,7 +75,7 @@ export function WhyChooseUs() {
                     aria-expanded={isActive}
                     className={cn(
                       "w-full rounded-2xl px-5 py-5 text-left transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:px-7",
-                      isActive ? "bg-brand text-white" : "bg-ink/[0.04] text-ink hover:bg-ink/[0.07]",
+                      isActive ? "bg-brand text-white" : "bg-brand-light/60 text-ink hover:bg-brand-light",
                     )}
                   >
                     <span className="flex items-center gap-4">
@@ -105,7 +105,7 @@ export function WhyChooseUs() {
         <div className="rounded-[2rem] bg-brand/5 p-4 sm:p-6 lg:p-8">
           <div className="relative aspect-[4/5] h-full overflow-hidden rounded-3xl sm:aspect-[4/3] lg:aspect-auto lg:min-h-[560px]">
             <Image
-              src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=2400&q=80&auto=format"
+              src="/images/why-us-planning.jpg"
               alt="Traveller planning a trip with a map and camera"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

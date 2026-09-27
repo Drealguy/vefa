@@ -21,8 +21,10 @@ export function ServiceCard({ title, description, image, icon, prices, pricesTit
     <article
       data-open={open}
       className={cn(
-        "group relative isolate aspect-[4/5] overflow-hidden rounded-3xl bg-ink",
-        featured && "sm:col-span-2 sm:aspect-[8/5] lg:aspect-auto",
+        // Phones: shorter cards (5:4) so seven services don't make an endless scroll; the Visa card
+        // stays 4:5 there because its price list needs the height.
+        "group relative isolate aspect-[5/4] overflow-hidden rounded-3xl bg-ink sm:aspect-[4/5]",
+        featured && "aspect-[4/5] sm:col-span-2 sm:aspect-[8/5] lg:aspect-auto",
       )}
     >
       <Image

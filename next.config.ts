@@ -1,14 +1,6 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      // Placeholder photos. Query allowed so Unsplash resizes before Next optimizes.
-      { protocol: "https", hostname: "images.unsplash.com", pathname: "/photo-*" },
-      // Temporary: service card images supplied by the owner. Move into /public before launch.
-      new URL("https://i.pinimg.com/**"),
-    ],
-  },
-};
+// All images (photos, logos, flyers) are stored locally in /public, so no remote image hosts are needed.
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

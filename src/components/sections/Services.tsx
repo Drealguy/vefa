@@ -21,10 +21,10 @@ export function Services() {
               cheap, and reliable service. Get exclusive 10% discount for special customers!
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Button href={bookHref} icon={<Plane size={18} />}>
+              <Button href={bookHref} size="lg" icon={<Plane size={18} />}>
                 Book Your Flight
               </Button>
-              <Button href="/services" variant="white" icon={<ArrowRight size={18} />}>
+              <Button href="/services" size="lg" variant="white" icon={<ArrowRight size={18} />}>
                 Explore Services
               </Button>
             </div>

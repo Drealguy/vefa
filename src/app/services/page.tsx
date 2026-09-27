@@ -19,7 +19,7 @@ export default function ServicesPage() {
         title="Our Services"
         label="Our Premium Services"
         description="Complete travel solutions for all your needs."
-        image="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=2400&q=80&auto=format"
+        image="/images/services-hero-plane.jpg"
         imageAlt="White airplane in flight"
       />
       <Services />

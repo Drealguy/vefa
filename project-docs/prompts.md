@@ -222,3 +222,9 @@ AI assistants: append each new prompt here (numbered, dated) before doing the wo
 >
 > also the abiut page, let the number animate aldo add 20 years to it
 
+
+## 23 — 2026-09-27
+> use the normal thumbial screenshot on the hero section oo
+>
+> now check any irregularities any responsivensss and design sysetm and fix it all and then push
+

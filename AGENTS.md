@@ -34,11 +34,13 @@ Vega is a travel website redesign. Before doing anything, read:
 - Merge class names with `cn()` from `src/lib/cn.ts` so overrides passed into components win.
 
 ## Design system (strict)
-- **Spacing:** every content section is wrapped in `<Section>` + `<Container>` from `src/components/ui/Section.tsx` (py-20 / sm:py-28, max-w-7xl, px-4 / sm:px-6). Never add custom section padding or widths. Narrow content uses `<Container className="max-w-3xl">`.
+- **Spacing:** every content section is wrapped in `<Section>` + `<Container>` from `src/components/ui/Section.tsx` (default py-20 / sm:py-28; `size="sm"` = py-12 / sm:py-16 for slim bands like the logo strip; max-w-7xl; px-4 / sm:px-6). Never add custom section padding or widths, and never add extra py inside a section.
 - **Heading → content gap:** `mt-12 sm:mt-16` between a SectionHeading and the section body.
 - **Headings:** use `SectionHeading` (h2: text-3xl / sm:text-4xl / lg:text-5xl, bold, text-ink). Body text: text-base / sm:text-lg, text-muted.
 - **Radius:** cards and images `rounded-3xl`; image panels `rounded-[2rem] bg-brand/5` with padding; buttons, pills and chips `rounded-full`.
-- **Colour:** brand red, ink (black), white, plus the red-family tokens. Nothing else.
+- **Colour:** brand red, ink (black), white, plus the red-family tokens. Nothing else. Tinted surfaces (closed accordion items, info cards) use `bg-brand-light/60`; image panels and placeholders use `bg-brand/5`. No greys for surfaces.
+- **Button sizes:** `size="lg"` for section-level calls to action (hero, section intros, CTA banner); `md` inside cards, dropdowns and the footer. Always use `<Button>`, never a hand-styled button.
+- **Images:** store every image in `/public` (photos in `public/images/`). No hot-linked images.
 - **Logos and partner strips:** plain logos, no cards, borders or shadows.
 - **No decorative shadows** on cards, accordions or list items. Separate them with fills or a thin `border-black/10`. Shadows are only for elements floating over other content (flight search bar, popup).
 - **Width:** full sections use the standard Container. Text-heavy blocks like the FAQ use `max-w-5xl` (about 80% of the page), not narrow columns.

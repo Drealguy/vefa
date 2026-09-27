@@ -107,7 +107,7 @@ export function ContactForm() {
         </div>
 
         {sent ? (
-          <div className="py-16 sm:py-20">
+          <div className="mt-12 sm:mt-16">
             <p className="inline-flex items-center gap-2 text-sm text-muted">
               <span aria-hidden className="size-1.5 bg-brand" />
               All done
@@ -128,7 +128,7 @@ export function ContactForm() {
             </p>
           </div>
         ) : (
-          <form onSubmit={next} noValidate className="py-16 sm:py-20" aria-live="polite">
+          <form onSubmit={next} noValidate className="mt-12 sm:mt-16" aria-live="polite">
             <p className="inline-flex items-center gap-2 text-sm text-muted sm:text-base">
               <span aria-hidden className="size-1.5 bg-brand" />
               {step.group}

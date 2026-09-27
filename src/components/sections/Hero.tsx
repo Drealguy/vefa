@@ -8,7 +8,7 @@ export function Hero() {
     <div className="relative">
       <section className="relative isolate flex min-h-[88svh] items-center justify-center overflow-hidden bg-ink pb-28 sm:pb-24 lg:min-h-[92svh]">
         <Image
-          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=2400&q=80&auto=format"
+          src="/images/hero-plane-wing.jpg"
           alt="View of the sky from an airplane window"
           fill
           preload

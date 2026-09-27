@@ -20,7 +20,7 @@ export default function AboutPage() {
         title="About Us"
         label="Our Story"
         description="Nigeria's trusted travel partner. IATA certified travel agency since 2006."
-        image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=2400&q=80&auto=format"
+        image="/images/about-hero-lake.jpg"
         imageAlt="Traveller on a boat looking out over a mountain lake"
       />
       <WhoWeAre />

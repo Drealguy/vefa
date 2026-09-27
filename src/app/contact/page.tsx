@@ -19,7 +19,7 @@ export default function ContactPage() {
         title="Contact Us"
         label="24/7 Support"
         description="Round-the-clock customer service to assist you before, during, and after your travel."
-        image="https://images.unsplash.com/photo-1483450388369-9ed95738483c?w=2400&q=80&auto=format"
+        image="/images/contact-hero-cabin.jpg"
         imageAlt="Passengers seated inside an airplane cabin"
       />
       <ContactForm />

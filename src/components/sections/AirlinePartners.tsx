@@ -38,7 +38,7 @@ function AirlineLogo({ name, logo, width, height }: Airline) {
 
 export function AirlinePartners() {
   return (
-    <Section aria-label="Our airline partners" className="overflow-hidden">
+    <Section size="sm" aria-label="Our airline partners" className="overflow-hidden">
       <Container>
         <p className="text-center text-base text-muted sm:text-lg">
           Compare and book with the world&apos;s leading airlines

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Minus, Plus, Users } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 
 export type Counts = { adults: number; children: number; infants: number };
@@ -121,13 +122,9 @@ export function TravellersPicker({
             );
           })}
           <div className="mt-1 border-t border-black/5 p-2">
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="h-11 w-full rounded-full bg-brand font-heading text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
-            >
+            <Button type="button" onClick={() => setOpen(false)} className="w-full hover:translate-y-0">
               Done
-            </button>
+            </Button>
           </div>
         </div>
       )}

@@ -50,7 +50,7 @@ Vefa Tourism & Travels Ltd. — IATA-certified travel agency in Nigeria (since 2
 ## SEO & share previews
 - Root `layout.tsx`: `metadataBase` from `siteUrl` (`lib/site.ts`: `NEXT_PUBLIC_SITE_URL`, else Vercel's production URL, else localhost), title template "%s | Vefa Tourism & Travels", description, keywords, canonical, Open Graph + Twitter card, robots, and TravelAgency JSON-LD (name, phone, email, address, services).
 - Per-page metadata via `pageMetadata()` in `lib/seo.ts` (fills OG/Twitter fully, because page-level objects replace the root ones).
-- Share image: `src/app/opengraph-image.jpg` + `twitter-image.jpg` (1200×630, ~60 KB, generated with sharp: logo, headline, services line, red bar). WhatsApp/Facebook cache previews, so a link shared before this change may keep its old (empty) preview for a while.
+- Share image: `src/app/opengraph-image.jpg` + `twitter-image.jpg` = a real screenshot of the home hero (owner asked for this), 1200×630 JPEG. Regenerate after hero changes by screenshotting a production build (`next start`) at 1440×756 @2x and resizing to 1200×630. WhatsApp/Facebook cache previews, so a link shared before this change may keep its old (empty) preview for a while.
 - `sitemap.ts` + `robots.ts` (API routes disallowed).
 - **When the custom domain is live, set `NEXT_PUBLIC_SITE_URL=https://yourdomain` in the hosting env vars.**
 
@@ -75,8 +75,7 @@ Vefa Tourism & Travels Ltd. — IATA-certified travel agency in Nigeria (since 2
 - Logos: `public/brand/`. Promo flyers: `public/promos/`.
 - Airline logos: stored locally in `public/airlines/*.svg`.
 - Favicon: `src/app/icon.png` + `apple-icon.png`: logo mark on a white rounded square so it shows on light and dark browser themes.
-- Still hot-linked: Unsplash photos, Pinterest service images. Move into `/public` before launch (downloading needs the owner's OK).
-- Unsplash URLs must keep `?w=2400&q=80&auto=format`.
+- **All photos are local** in `public/images/` (13 files: page heroes, why-us, who-we-are, 7 service cards). No remote image hosts remain (`next.config.ts` has no remotePatterns). Remote Unsplash/Pinterest images used to time out in the Next image optimizer.
 
 ## Open items / next up
 - Team: real names, roles, photos.

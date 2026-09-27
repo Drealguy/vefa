@@ -22,7 +22,7 @@ export function WhoWeAre() {
         <div className="rounded-[2rem] bg-brand/5 p-4 sm:p-6 lg:p-8">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-[4/5]">
             <Image
-              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2400&q=80&auto=format"
+              src="/images/who-we-are-beach.jpg"
               alt="Tropical beach with clear blue water"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

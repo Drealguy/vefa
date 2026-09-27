@@ -30,7 +30,7 @@ export function Team() {
           Meet the team behind Vefa Tourism &amp; Travels
         </h2>
 
-        <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-ink/[0.04] lg:col-start-1 lg:row-start-2">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-brand/5 lg:col-start-1 lg:row-start-2">
           {current.photo ? (
             <Image src={current.photo} alt={current.name} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
           ) : (

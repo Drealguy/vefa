@@ -8,7 +8,7 @@ export function CtaBanner() {
   return (
     <Section className="relative isolate overflow-hidden">
       <Image
-        src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=2400&q=80&auto=format"
+        src="/images/hero-plane-wing.jpg"
         alt=""
         fill
         sizes="100vw"
